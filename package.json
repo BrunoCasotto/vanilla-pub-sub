@@ -1,0 +1,25 @@
+{
+  "name": "vanilla-pub-sub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --config webpack.config.js --watch"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "webpack": "^3.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoCasotto/vanilla-pub-sub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrunoCasotto/vanilla-pub-sub/issues"
+  },
+  "homepage": "https://github.com/BrunoCasotto/vanilla-pub-sub#readme"
+}
