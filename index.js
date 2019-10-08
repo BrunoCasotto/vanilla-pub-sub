@@ -1,13 +1,11 @@
 'use strict';
 
 var actionTypes = {
-    CHANGE_PERSONA_STATE: 'CHANGE_PERSONA_STATE'
-  }
+  STATE_EXAMPLE: 'STATE_EXAMPLE'
+}
 , initialState = {
-    pdp: {
-      personalization: {}
-    }
-  };
+  example: {}
+};
 
 /**
  * Function to manipulate the reducers
@@ -24,14 +22,14 @@ Reducer.prototype.stateReducer = function(action, state) {
     var status = (action && action.payload) ? action.payload : initialState;
 
     switch (action.type) {
-      case actionTypes.CHANGE_PERSONA_STATE:
-        return Object.assign(state.pdp.persona, status);
+      case actionTypes.STATE_EXAMPLE:
+        return Object.assign(state.example, status);
 
       default:
         return state;
     }
   } catch (error) {
-    console.error('nsState.stateReducer', error);
+    console.error('VanillaPubSub.stateReducer', error);
     return state;
   }
 };
@@ -40,18 +38,18 @@ Reducer.prototype.stateReducer = function(action, state) {
 /**
  * Store where contains the states
  */
-var NsStore = function(){}; //create the store
+var VanillaPubSub = function(){}; //create the store
 
-NsStore.prototype.reducers = new Reducer(); //added reducers dependencies
-NsStore.prototype.actionTypes = actionTypes; //added action types to expose togheter (sorry)
-NsStore.prototype.state = initialState; //state of application
-NsStore.prototype.subscribers = {};
+VanillaPubSub.prototype.reducers = new Reducer(); //added reducers dependencies
+VanillaPubSub.prototype.actionTypes = actionTypes; //added action types to expose togheter (sorry)
+VanillaPubSub.prototype.state = initialState; //state of application
+VanillaPubSub.prototype.subscribers = {};
 
 /**
  * Class to expose the store
  * @param {object} action object contains {type, payload}
  */
-NsStore.prototype.dispatch = function(action) {
+VanillaPubSub.prototype.dispatch = function(action) {
   try {
     var actionObj = {
       type: (action && action.type) ? action.type : ''
@@ -68,7 +66,7 @@ NsStore.prototype.dispatch = function(action) {
 
     this.state = newState;
   } catch (error) {
-    console.error('nsState.dispatch', error);
+    console.error('vanilaPubSub.dispatch', error);
   }
 };
 
@@ -78,7 +76,7 @@ NsStore.prototype.dispatch = function(action) {
  * @param {function} callback - function to execute
  * @param {string} type - type of mutation to listener
  */
-NsStore.prototype.subscribe = function(type, callback) {
+VanillaPubSub.prototype.subscribe = function(type, callback) {
   this.subscribers[type] = [];
 
   if(typeof callback === 'function') {
@@ -87,4 +85,4 @@ NsStore.prototype.subscribe = function(type, callback) {
 };
 
 //export store
-window.freedom.NsStore = new NsStore();
+window.VanillaPubSub = new VanillaPubSub();
